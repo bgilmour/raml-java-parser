@@ -15,12 +15,12 @@
  */
 package org.raml.v2.api.model;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.net.URI;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Created. There, you have it.
@@ -33,7 +33,7 @@ public class PermissiveURITest
     {
 
         URI i = PermissiveURI.create("file:/funk");
-        assertEquals("/funk", Paths.get(i).toString());
+        assertEquals("funk", Paths.get(i).toString().substring(1));
     }
 
     @Test
@@ -41,6 +41,6 @@ public class PermissiveURITest
     {
 
         URI i = PermissiveURI.create("file:/file important");
-        assertEquals("/file important", Paths.get(i).toString());
+        assertEquals("file important", Paths.get(i).toString().substring(1));
     }
 }

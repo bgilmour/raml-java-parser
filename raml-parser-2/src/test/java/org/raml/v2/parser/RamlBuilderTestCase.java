@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.Collection;
 
 import org.apache.commons.io.IOUtils;
@@ -35,10 +36,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.raml.v2.internal.impl.RamlBuilder;
 import org.raml.v2.api.RamlModelBuilder;
 import org.raml.v2.api.RamlModelResult;
 import org.raml.v2.dataprovider.TestDataProvider;
+import org.raml.v2.internal.impl.RamlBuilder;
 import org.raml.v2.internal.utils.Dumper;
 import org.raml.v2.internal.utils.RamlNodeUtils;
 import org.raml.yagi.framework.nodes.Node;
@@ -61,7 +62,7 @@ public class RamlBuilderTestCase extends TestDataProvider
 
         dump = Dumper.inMemoryDumper(raml);
 
-        expected = IOUtils.toString(new FileInputStream(this.expectedOutput));
+        expected = IOUtils.toString(new FileInputStream(this.expectedOutput), Charset.defaultCharset());
         Assert.assertThat(dump, IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace(expected));
     }
 
