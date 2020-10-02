@@ -121,9 +121,9 @@ public class XxeCheckTestCase
 
     private void doXeeValidationTest(String ramlVersion, String fileUrl, String name)
     {
-        final String schema = RAML_TEMPLATE.replace("RAML_VERSION", ramlVersion).replace("FILE_URL", fileUrl);
+        final String schema = RAML_TEMPLATE.replace("RAML_VERSION", ramlVersion).replace("FILE_URL", fileUrl.replace("/C:/", "/C/"));
 
-        final RamlModelResult ramlModelResult = new RamlModelBuilder().buildApi(schema, name);
+        final RamlModelResult ramlModelResult = new RamlModelBuilder().buildApi(schema, name.replace("/C:/", "/C/"));
         final ValidationResult validationResult = ramlModelResult.getValidationResults().get(0);
 
         for (ValidationResult result : ramlModelResult.getValidationResults())
